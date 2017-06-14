@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 var PLUGINS = [];
 if (process.env.NODE_ENV === 'production') {
@@ -11,5 +12,10 @@ module.exports = {
     path: __dirname,
     filename: 'build/build.js'
   },
-  plugins: PLUGINS
+  plugins: PLUGINS,
+  devServer: {
+    contentBase: path.join(__dirname, '.'),
+    compress: true,
+    port: 3000
+  }
 };

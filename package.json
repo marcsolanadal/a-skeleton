@@ -4,8 +4,8 @@
   "description": "A simple skeleton for an a-frame project",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot -d --inline",
-    "lint": "standard -v | snazzy"
+    "start": "webpack-dev-server --progress --colors --hot -d --inline",
+    "lint": "standard -vii | snazzy"
   },
   "repository": "",
   "license": "MIT",

@@ -5,10 +5,66 @@
     <title>A-Skeleton</title>
     <meta name="description" content="A-frame project skeleton">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-teleport-controls@0.2.x/dist/aframe-teleport-controls.min.js"></script>
     <script src="build/build.js"></script>
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+    <a-scene stats>
 
+      <!-- Asset Management System -->
+      <a-assets>
+        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
+      </a-assets>
+
+      <!-- Mixins -->
+      <a-assets>
+        <a-mixin id="voxel"
+          geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5"
+          material="shader: standard"
+          random-color
+          snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"></a-mixin>
+      </a-assets>
+
+      <!-- Ground -->
+      <!-- <a-plane id="ground" src="#groundTexture" color="#CCC" height="100" width="100" rotation="-90 0 0"></a-plane> -->
+      <a-cylinder id="ground" src="#groundTexture" radius="32" height="0.1"></a-cylinder>
+
+      <!-- Sky -->
+      <a-sky id="sky" src="#skyTexture" theta-length="90" radius="30"></a-sky>
+
+      <!-- Hand controls -->
+      <a-entity vive-controls="hand: left"></a-entity>
+      <a-entity vive-controls="hand: right"></a-entity>
+      <a-entity oculus-touch-controls="hand: left"></a-entity>
+      <a-entity oculus-touch-controls="hand: right"></a-entity>
+
+      <!-- Teleport hand -->
+      <a-entity id="teleHand"
+        hand-controls="left"
+        teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"></a-entity>
+
+      <!-- Block hand -->
+      <a-entity id="blockHand" hand-controls="right">
+        <a-cylinder id="laser"
+          laser
+          position="0 0 -15"
+          rotation="90 0 0"
+          material="color: red; shader: standard"
+          radius="0.001"
+          height="30">
+          <a-entity raycaster="objects: [mixin='voxel'], #ground" spawner></a-entity>
+        </a-cylinder>
+      </a-entity>
+
+      <!-- Test blocks -->
+      <a-entity mixin="voxel" position="-1 0 -2"></a-entity>
+      <a-entity mixin="voxel" position="0 0 -2">
+        <a-animation attribute="rotation" to="0 360 0" repeat="indefinite"></a-animation>
+      </a-entity>
+      <a-entity mixin="voxel" position="0 1 -2"></a-entity>
+
+    </a-scene>
   </body>
 </html>
