@@ -17,5 +17,8 @@ module.exports = {
     contentBase: path.join(__dirname, '.'),
     compress: true,
     port: 3000
+  },
+  resolve: {
+    exstensions: ['.js', '.json', '.jsx']
   }
 };

@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <title>A-Skeleton</title>
     <meta name="description" content="A-frame project skeleton">
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-teleport-controls@0.2.x/dist/aframe-teleport-controls.min.js"></script>
     <script src="build/build.js"></script>
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <a-scene stats>
+    <a-scene stats avatar-recorder="loop: true">
 
       <!-- Asset Management System -->
       <a-assets>
@@ -37,8 +35,8 @@
       <!-- Hand controls -->
       <a-entity vive-controls="hand: left"></a-entity>
       <a-entity vive-controls="hand: right"></a-entity>
-      <a-entity oculus-touch-controls="hand: left"></a-entity>
-      <a-entity oculus-touch-controls="hand: right"></a-entity>
+      <a-entity oculus-touch-controls="hand: left; model: false"></a-entity>
+      <a-entity oculus-touch-controls="hand: right; model: false"></a-entity>
 
       <!-- Teleport hand -->
       <a-entity id="teleHand"

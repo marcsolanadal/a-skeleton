@@ -1,9 +1,13 @@
-window.ABLAST = {};
+require('aframe')
+
+require('aframe-teleport-controls')
+require('aframe-event-set-component')
 
 // Assets managment
 
 // Systems
 
 // Components
-require('./components/spawner.js')
-require('./components/laser.js')
+require('./components/random-color')
+require('./components/spawner')
+require('./components/laser')

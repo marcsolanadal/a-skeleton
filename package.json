@@ -4,7 +4,7 @@
   "description": "A simple skeleton for an a-frame project",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "start": "webpack-dev-server --progress --colors --hot -d --inline",
+    "start": "webpack-dev-server --host 192.168.2.39 --progress --colors --hot -d --inline",
     "lint": "standard -vii | snazzy"
   },
   "repository": "",
@@ -15,5 +15,10 @@
     "standard": "^10.0.2",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
+  },
+  "dependencies": {
+    "aframe": "^0.5.0",
+    "aframe-event-set-component": "^3.0.3",
+    "aframe-teleport-controls": "^0.2.0"
   }
 }
