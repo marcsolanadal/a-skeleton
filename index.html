@@ -27,6 +27,14 @@
           snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"></a-mixin>
       </a-assets>
 
+      <a-entity camera position="0 1 0">
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: black; shader: flat">
+        </a-entity>
+      </a-entity>
+
       <!-- Ground -->
       <!-- <a-plane id="ground" src="#groundTexture" color="#CCC" height="100" width="100" rotation="-90 0 0"></a-plane> -->
       <a-cylinder id="ground" src="#groundTexture" radius="32" height="0.1"></a-cylinder>

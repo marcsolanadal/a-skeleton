@@ -3,11 +3,14 @@
 AFRAME.registerComponent('laser', {
   init: function () {
     const entity = this.el
-    const laser = entity.sceneEl.querySelector('#laser')
+    let lastIntersectionPoint
 
     entity.addEventListener('raycaster-intersection', (event) => {
-      console.log('raycaster-intersection', event.detail.intersections[0].point)
-      entity.emit('collide', event.detail.intersections[0].point)
+      lastIntersectionPoint = event.detail.intersections[0].point
+
+      console.log('raycaster-intersection', lastIntersectionPoint)
+
+      entity.emit('collide', lastIntersectionPoint)
       entity.setState('colliding')
     })
 
@@ -24,15 +27,13 @@ AFRAME.registerComponent('laser', {
         const laserPointer = document.createElement('a-image')
         laserPointer.setAttribute('id', '#laserPoint')
         laserPointer.setAttribute('src', '#laserPointer')
-        laserPointer.setAttribute('position', event.detail.intersections[0].point)
+        laserPointer.setAttribute('position', lastIntersectionPoint)
         this.appendChild(laserPointer)
 
       // if it exists move it to the intersection position
       } else {
-        point.setAttribute('position', event.detail.intersections[0].point)
+        point.setAttribute('position', lastIntersectionPoint)
       }
-
     }
-
   }
 })

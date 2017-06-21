@@ -1,5 +1,5 @@
 
-const randomIntRange = function(max) {
+const randomIntRange = function (max) {
   return Math.floor(Math.random() * max)
 }
 

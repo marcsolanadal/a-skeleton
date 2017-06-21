@@ -1,4 +1,4 @@
-//require('aframe')
+// require('aframe')
 require('aframe-motion-capture-components')
 
 require('aframe-teleport-controls')

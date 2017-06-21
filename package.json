@@ -5,12 +5,25 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "start": "webpack-dev-server --host 192.168.2.39 --progress --colors --hot -d --inline",
-    "lint": "standard -vii | snazzy"
+    "lint": "standard --global AFRAME ./src/**/* | snazzy --color",
+    "test": "echo \"running tests...\" && exit 0",
+    "precommit-msg": "echo \"pre-commit checks...\" && exit 0"
   },
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "repository": "",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^3.0.0",
+    "eslint": "^4.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "pre-commit": "^1.2.2",
     "snazzy": "^4.0.1",
     "standard": "^10.0.2",
     "webpack": "^1.13.2",

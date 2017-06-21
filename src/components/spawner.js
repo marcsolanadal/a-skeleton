@@ -2,7 +2,7 @@
 AFRAME.registerComponent('spawner', {
   init: function () {
     const entity = this.el
-    const blockHand = entity.sceneEl.querySelector('#blockHand');
+    const blockHand = entity.sceneEl.querySelector('#blockHand')
 
     blockHand.addEventListener('triggerdown', (event) => {
       entity.addState('pressed')
