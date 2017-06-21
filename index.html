@@ -4,16 +4,18 @@
     <meta charset="utf-8">
     <title>A-Skeleton</title>
     <meta name="description" content="A-frame project skeleton">
+    <link rel="shortcut icon" href="#">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="build/build.js"></script>
-    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <a-scene stats avatar-recorder="loop: true">
+    <a-scene avatar-recorder>
 
       <!-- Asset Management System -->
       <a-assets>
-        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
-        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
+        <img id="groundTexture" src="./assets/images/floor.jpg">
+        <img id="skyTexture" src="./assets/images/sky.jpg">
+        <img id="laserPoint" src="./assets/images/laser-pointer-placeholder.png">
       </a-assets>
 
       <!-- Mixins -->
@@ -47,12 +49,13 @@
       <a-entity id="blockHand" hand-controls="right">
         <a-cylinder id="laser"
           laser
+          raycaster="objects: [mixin='voxel'], #ground"
+          spawner
           position="0 0 -15"
           rotation="90 0 0"
           material="color: red; shader: standard"
           radius="0.001"
           height="30">
-          <a-entity raycaster="objects: [mixin='voxel'], #ground" spawner></a-entity>
         </a-cylinder>
       </a-entity>
 

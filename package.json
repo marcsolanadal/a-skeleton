@@ -19,6 +19,7 @@
   "dependencies": {
     "aframe": "^0.5.0",
     "aframe-event-set-component": "^3.0.3",
+    "aframe-motion-capture-components": "^0.1.6",
     "aframe-teleport-controls": "^0.2.0"
   }
 }

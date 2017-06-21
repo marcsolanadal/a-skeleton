@@ -1,9 +1,19 @@
 
 AFRAME.registerComponent('spawner', {
   init: function () {
-    const blockHand = this.el.sceneEl.querySelector('#blockHand');
-    blockHand.addEventListener('triggerdown', function(event) {
-      console.log('spawn');
-    });
+    const entity = this.el
+    const blockHand = entity.sceneEl.querySelector('#blockHand');
+
+    blockHand.addEventListener('triggerdown', (event) => {
+      entity.addState('pressed')
+    })
+
+    blockHand.addEventListener('triggerup', (event) => {
+      entity.removeState('pressed')
+    })
+
+    entity.addEventListener('collided', (event) => {
+      console.log('collision detected', event)
+    })
   }
 })
