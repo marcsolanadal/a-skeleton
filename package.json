@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --host 192.168.2.39 --progress --colors --hot -d --inline",
     "lint": "standard --global AFRAME ./src/**/* | snazzy --color",
     "test": "echo \"running tests...\" && exit 0",
-    "precommit-msg": "echo \"pre-commit checks...\" && exit 0"
+    "precommit-msg": "echo \"Checking if code quality is good enough...\" && exit 0"
   },
   "pre-commit": [
     "precommit-msg",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "aframe": "^0.5.0",
+    "aframe-animation-component": "^3.2.5",
     "aframe-event-set-component": "^3.0.3",
     "aframe-motion-capture-components": "^0.1.6",
     "aframe-teleport-controls": "^0.2.0"

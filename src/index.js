@@ -3,6 +3,7 @@ require('aframe-motion-capture-components')
 
 require('aframe-teleport-controls')
 require('aframe-event-set-component')
+require('aframe-animation-component')
 
 // Assets managment
 

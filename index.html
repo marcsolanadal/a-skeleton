@@ -16,10 +16,18 @@
         <img id="groundTexture" src="./assets/images/floor.jpg">
         <img id="skyTexture" src="./assets/images/sky.jpg">
         <img id="laserPoint" src="./assets/images/laser-pointer-placeholder.png">
+
+        <a-asset-item id="sword-obj" src="./assets/models/sword/model.obj"></a-asset-item>
+        <a-asset-item id="sword-mtl" src="./assets/models/sword/materials.mtl"></a-asset-item>
+
+        <a-asset-item id="dark-sword-obj" src="./assets/models/dark-sword/model.obj"></a-asset-item>
+        <a-asset-item id="dark-sword-mtl" src="./assets/models/dark-sword/materials.mtl"></a-asset-item>
+
       </a-assets>
 
       <!-- Mixins -->
       <a-assets>
+
         <a-mixin id="voxel"
           geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5"
           material="shader: standard"
@@ -27,16 +35,19 @@
           snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"></a-mixin>
       </a-assets>
 
-      <a-entity camera position="0 1 0">
-        <a-entity cursor="fuse: true; fuseTimeout: 500"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                  material="color: black; shader: flat">
+      <!-- Cursor controls -->
+      <a-entity camera="userHeight: 1.6" look-controls>
+        <a-entity id="cursor"
+          laser
+          cursor="fuse: true; fuseTimeout: 500"
+          raycaster="far: 20; interval: 250; objects: [mixin='voxel']"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          material="color: gray; shader: flat; opacity: 0.5">
         </a-entity>
       </a-entity>
 
       <!-- Ground -->
-      <!-- <a-plane id="ground" src="#groundTexture" color="#CCC" height="100" width="100" rotation="-90 0 0"></a-plane> -->
       <a-cylinder id="ground" src="#groundTexture" radius="32" height="0.1"></a-cylinder>
 
       <!-- Sky -->
@@ -68,11 +79,29 @@
       </a-entity>
 
       <!-- Test blocks -->
-      <a-entity mixin="voxel" position="-1 0 -2"></a-entity>
-      <a-entity mixin="voxel" position="0 0 -2">
+      <!--
+      <a-entity mixin="voxel" position="0 0.5 -2">
         <a-animation attribute="rotation" to="0 360 0" repeat="indefinite"></a-animation>
       </a-entity>
-      <a-entity mixin="voxel" position="0 1 -2"></a-entity>
+      -->
+
+      <a-entity
+        position="0 1 -2"
+        obj-model="obj: #sword-obj; mtl: #sword-mtl">
+        <a-animation
+          attribute="rotation"
+          easing="linear"
+          to="0 360 0"
+          dur="5000"
+          repeat="indefinite"></a-animation>
+      </a-entity>
+
+      <a-entity
+        position="0.5 1 -2"
+        rotation="0 0 0"
+        obj-model="obj: #dark-sword-obj; mtl: #dark-sword-mtl"
+        animation="property: rotation; easing: linear; to: 0 360 0; dur: 5000; loop: true">
+      </a-entity>
 
     </a-scene>
   </body>

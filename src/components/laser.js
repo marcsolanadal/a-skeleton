@@ -1,21 +1,27 @@
 
 // TODO: Change the name of the component
 AFRAME.registerComponent('laser', {
+  schema: {
+    intersectionPoint: { type: 'string' }
+  },
+
   init: function () {
     const entity = this.el
-    let lastIntersectionPoint
+    let intersectionPoint
 
     entity.addEventListener('raycaster-intersection', (event) => {
-      lastIntersectionPoint = event.detail.intersections[0].point
+      intersectionPoint = event.detail.intersections[0].point
 
-      console.log('raycaster-intersection', lastIntersectionPoint)
+      console.log('raycaster-intersection', intersectionPoint)
 
-      entity.emit('collide', lastIntersectionPoint)
-      entity.setState('colliding')
+      entity.emit('collide', intersectionPoint)
+      entity.setAttribute('intersectionPoint', intersectionPoint)
+      entity.addState('intersecting')
     })
 
     entity.addEventListener('raycaster-intersection-cleared', (event) => {
-      entity.removeState('colliding')
+      console.log('no longer intersecting')
+      entity.removeState('intersecting')
     })
 
     if (entity.is('colliding')) {
@@ -27,12 +33,12 @@ AFRAME.registerComponent('laser', {
         const laserPointer = document.createElement('a-image')
         laserPointer.setAttribute('id', '#laserPoint')
         laserPointer.setAttribute('src', '#laserPointer')
-        laserPointer.setAttribute('position', lastIntersectionPoint)
+        laserPointer.setAttribute('position', intersectionPoint)
         this.appendChild(laserPointer)
 
       // if it exists move it to the intersection position
       } else {
-        point.setAttribute('position', lastIntersectionPoint)
+        point.setAttribute('position', intersectionPoint)
       }
     }
   }
